@@ -6,13 +6,14 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AdvertProject.Models;
 using ProjectAdvert.Models;
 
 namespace ProjectAdvert.Controllers
 {
     public class AdvertsController : Controller
     {
-        private MyDbContext db = new MyDbContext();
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Adverts
         public ActionResult Index()

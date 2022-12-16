@@ -1,8 +1,10 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using ProjectAdvert.Models;
 
 namespace AdvertProject.Models
 {
@@ -16,12 +18,14 @@ namespace AdvertProject.Models
             // Add custom user claims here
             return userIdentity;
         }
+
+        public virtual ICollection<Advert> Adverts { get; set; }
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("MyDb", throwIfV1Schema: false)
         {
         }
 
@@ -29,5 +33,7 @@ namespace AdvertProject.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<Advert> Adverts { get; set; }
     }
 }

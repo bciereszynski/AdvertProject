@@ -175,16 +175,28 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212161557440_InitialCreate.cs" />
+    <Compile Include="Migrations\202212161557440_InitialCreate.designer.cs">
+      <DependentUpon>202212161557440_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212161608246_init.cs" />
+    <Compile Include="Migrations\202212161608246_init.designer.cs">
+      <DependentUpon>202212161608246_init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Advert.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\MyDbContext.cs" />
     <Compile Include="Models\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\MyDb.mdf" />
+    <Content Include="App_Data\MyDb_log.ldf">
+      <DependentUpon>MyDb.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -247,7 +259,12 @@
     <Content Include="Views\Adverts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <EmbeddedResource Include="Migrations\202212161557440_InitialCreate.resx">
+      <DependentUpon>202212161557440_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212161608246_init.resx">
+      <DependentUpon>202212161608246_init.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
