@@ -1,6 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
+    background-color: #a5c0b9;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -27,4 +28,82 @@ textarea {
 .navbar-inverse .navbar-toggle:focus {
     background-color: #777;
     border-color: #fff
+}
+
+.navbar {
+    background-color: #4c525d;
+}
+
+
+/*Forms*/
+/*
+    #f5e9c2 -light prim
+    #ba7143 - dark prim
+    #a5c0b9 - light blue
+    #4c525d - dark grey
+*/
+
+
+.form-control:focus {
+    border-color: #a5c0b9;
+}
+
+.info_div {
+    text-align: center;
+    margin-top: 20px;
+    letter-spacing: 1px;
+}
+
+.form_class {
+    margin: auto;
+    width: fit-content;
+    padding: 40px 80px;
+    border-radius: 8px;
+    background-color: #f5e9c2;
+    font-family: 'system-ui';
+    font-size: 1.1rem;
+    box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+}
+
+.form_div {
+    display: block;
+    margin: auto;
+    text-transform: uppercase;
+}
+
+    .form_div > label {
+        letter-spacing: 3px;
+        font-size: 1.2rem;
+    }
+
+
+.field_class {
+    width: 300px;
+    border-radius: 6px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #4c525d;
+    padding: 5px 0px;
+    text-indent: 6px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-family: 'system-ui';
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+.submit_class {
+    border-style: none;
+    border-radius: 5px;
+    color: white;
+    background-color: #ba7143;
+    display: block;
+    margin-top: 10px;
+    padding: 8px 30px;
+    font-size: 1.3rem;
+    font-family: 'system-ui';
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 2px 2px 4px rgb(0,0,0,0.2);
+    cursor: pointer;
 }
