@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdvertProject.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -23,7 +24,8 @@ namespace ProjectAdvert.Models
         [DataType(DataType.Date)]
         public DateTime? Date { get; set; }
 
-        public ICollection<Tag> Tags { get; set; }
+        [Display(Name = "Kategorie")]
+        public ICollection<AdvertCategory> categories{ get; set; }
 
     }
 }

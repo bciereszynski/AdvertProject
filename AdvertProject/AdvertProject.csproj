@@ -170,6 +170,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdvertsController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -179,16 +180,17 @@
     <Compile Include="Migrations\202212161557440_InitialCreate.designer.cs">
       <DependentUpon>202212161557440_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202212161608246_init.cs" />
-    <Compile Include="Migrations\202212161608246_init.designer.cs">
-      <DependentUpon>202212161608246_init.cs</DependentUpon>
+    <Compile Include="Migrations\202212171204403_category.cs" />
+    <Compile Include="Migrations\202212171204403_category.designer.cs">
+      <DependentUpon>202212171204403_category.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Advert.cs" />
+    <Compile Include="Models\AdvertCategory.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -257,13 +259,18 @@
     <Content Include="Views\Adverts\Details.cshtml" />
     <Content Include="Views\Adverts\Edit.cshtml" />
     <Content Include="Views\Adverts\Index.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202212161557440_InitialCreate.resx">
       <DependentUpon>202212161557440_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212161608246_init.resx">
-      <DependentUpon>202212161608246_init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202212171204403_category.resx">
+      <DependentUpon>202212171204403_category.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

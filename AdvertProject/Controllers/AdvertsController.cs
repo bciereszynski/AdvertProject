@@ -39,6 +39,7 @@ namespace ProjectAdvert.Controllers
         // GET: Adverts/Create
         public ActionResult Create()
         {
+            ViewBag.Categories = new SelectList(db.Categories, "ID", "Name");
             return View();
         }
 
