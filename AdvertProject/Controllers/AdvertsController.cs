@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AdvertProject.Migrations;
 using AdvertProject.Models;
 using Microsoft.AspNet.Identity;
 using ProjectAdvert.Models;
+using WebGrease.Css.Extensions;
 
 namespace AdvertProject.Controllers
 {
@@ -42,8 +45,8 @@ namespace AdvertProject.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            ViewBag.Categories = new SelectList(db.Categories, "ID", "Name");
-          
+            ViewBag.Categories = new MultiSelectList(db.Categories, "ID", "Name");
+  
             return View();
         }
 
@@ -53,10 +56,23 @@ namespace AdvertProject.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Content,UserID,Date")] Advert advert)
+        public ActionResult Create([Bind(Include = "ID,Content,UserID,Date")] Advert advert, FormCollection form)
         {
             if (ModelState.IsValid)
             {
+                String categoryIds = form["categories"];
+                if (categoryIds != null)
+                {
+                    List<string> choosesList = categoryIds.Split(',').ToList();
+                    foreach(string category in choosesList)
+                    {
+                        int categoryId = Int32.Parse(category);
+                        AdvertCategory ac= new AdvertCategory();
+                        ac.AdvertID = advert.ID;
+                        ac.CategoryID = categoryId;
+                        db.AdvertCategories.Add(ac);
+                    }
+                }
                 advert.UserID = User.Identity.GetUserId();
                 advert.User = db.Users.Find(advert.UserID);
                 advert.Date = DateTime.Now;
@@ -65,7 +81,7 @@ namespace AdvertProject.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Categories = new SelectList(db.Categories, "ID", "Name");
+            ViewBag.Categories = new MultiSelectList(db.Categories, "ID", "Name");
             return View(advert);
         }
 
@@ -78,7 +94,7 @@ namespace AdvertProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Advert advert = db.Adverts.Find(id);
+            Advert advert = db.Adverts.Where(x => x.ID == id).Include(x => x.categories).FirstOrDefault();
             if (advert == null)
             {
                 return HttpNotFound();
@@ -87,7 +103,15 @@ namespace AdvertProject.Controllers
             {
                 return RedirectToAction("Index");
             }
-            ViewBag.Categories = new SelectList(db.Categories, "ID", "Name");
+
+            List<string> selectedCategories = new List<string>();
+            foreach (AdvertCategory category in advert.categories.ToList())
+            {
+                selectedCategories.Add(category.CategoryID.ToString());
+            }
+
+
+            ViewBag.Categories = new MultiSelectList(db.Categories, "ID", "Name", selectedCategories);
             return View(advert);
         }
 
@@ -97,20 +121,46 @@ namespace AdvertProject.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Content,UserID,Date")] Advert advert)
+        public ActionResult Edit([Bind(Include = "ID,Content,UserID,Date")] Advert advert, FormCollection form)
         {
             if (User.Identity.GetUserId() != advert.UserID)
             {
                 return RedirectToAction("Index");
             }
+
             if (ModelState.IsValid)
             {
+                foreach(AdvertCategory ac in db.AdvertCategories.Where(x => x.AdvertID == advert.ID))
+                {
+                    db.AdvertCategories.Remove(ac);
+                }
+               
+                String categoryIds = form["categories"];
+                if (categoryIds != null)
+                {
+                    List<string> choosesList = categoryIds.Split(',').ToList();
+                    foreach (string category in choosesList)
+                    {
+                        int categoryId = Int32.Parse(category);
+                        AdvertCategory ac = new AdvertCategory();
+                        ac.AdvertID = advert.ID;
+                        ac.CategoryID = categoryId;
+                        db.AdvertCategories.Add(ac);
+                    }
+                }
                 advert.Date = DateTime.Now;
                 db.Entry(advert).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Categories = new SelectList(db.Categories, "ID", "Name");
+
+            List<string> selectedCategories = new List<string>();
+            foreach (AdvertCategory category in advert.categories.ToList())
+            {
+                selectedCategories.Add(category.CategoryID.ToString());
+            }
+
+            ViewBag.Categories = new MultiSelectList(db.Categories, "ID", "Name", selectedCategories);
             return View(advert);
         }
 
