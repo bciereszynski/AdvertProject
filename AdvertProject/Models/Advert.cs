@@ -12,13 +12,12 @@ namespace ProjectAdvert.Models
         [Key]
         public int ID { get; set; }
 
-        [Display(Name = "Autor")]
-        [Required]
-        public string Autor { get; set; }
-
         [Display(Name = "Ogłoszenie")]
         [Required]
         public string Content { get; set; }
+
+        public string UserID { get; set; }
+        public virtual ApplicationUser User { get; set; }
 
         [Display(Name = "Data")]
         [DataType(DataType.Date)]
