@@ -193,6 +193,14 @@
     <Compile Include="Migrations\202212181331302_forbiden_words.designer.cs">
       <DependentUpon>202212181331302_forbiden_words.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212181445362_multiline_content.cs" />
+    <Compile Include="Migrations\202212181445362_multiline_content.designer.cs">
+      <DependentUpon>202212181445362_multiline_content.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212181520544_advert_content_maxlenght.cs" />
+    <Compile Include="Migrations\202212181520544_advert_content_maxlenght.designer.cs">
+      <DependentUpon>202212181520544_advert_content_maxlenght.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Advert.cs" />
@@ -292,6 +300,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202212181331302_forbiden_words.resx">
       <DependentUpon>202212181331302_forbiden_words.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212181445362_multiline_content.resx">
+      <DependentUpon>202212181445362_multiline_content.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212181520544_advert_content_maxlenght.resx">
+      <DependentUpon>202212181520544_advert_content_maxlenght.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

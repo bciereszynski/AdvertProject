@@ -10,6 +10,7 @@ using AdvertProject.Models;
 
 namespace AdvertProject.Controllers
 {
+    [Authorize]
     public class CategoriesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

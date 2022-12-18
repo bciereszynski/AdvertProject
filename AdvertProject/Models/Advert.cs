@@ -13,7 +13,9 @@ namespace ProjectAdvert.Models
         public int ID { get; set; }
 
         [Display(Name = "Ogłoszenie")]
+        [DataType(DataType.MultilineText)]
         [Required]
+        [MaxLength(1500)]
         public string Content { get; set; }
 
         public string UserID { get; set; }
