@@ -60,25 +60,45 @@ namespace AdvertProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                String categoryIds = form["categories"];
-                if (categoryIds != null)
+                //Content validation in case of forbiden words
+
+                List<ForbidenWord> forbidenWords = db.ForbidenWords.ToList();
+                bool contentSafe = true;
+
+                foreach(ForbidenWord f in forbidenWords)
                 {
-                    List<string> choosesList = categoryIds.Split(',').ToList();
-                    foreach(string category in choosesList)
+                    if (advert.Content.Contains(f.Content))
                     {
-                        int categoryId = Int32.Parse(category);
-                        AdvertCategory ac= new AdvertCategory();
-                        ac.AdvertID = advert.ID;
-                        ac.CategoryID = categoryId;
-                        db.AdvertCategories.Add(ac);
+                        contentSafe = false;
+                        ModelState.AddModelError("Content", "Ogłoszenie zawiera zakazane słowo: " + f.Content);
                     }
                 }
-                advert.UserID = User.Identity.GetUserId();
-                advert.User = db.Users.Find(advert.UserID);
-                advert.Date = DateTime.Now;
-                db.Adverts.Add(advert);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if(contentSafe == true)
+                {
+                    //Categories insert
+                    String categoryIds = form["categories"];
+                    if (categoryIds != null)
+                    {
+                        List<string> choosesList = categoryIds.Split(',').ToList();
+                        foreach (string category in choosesList)
+                        {
+                            int categoryId = Int32.Parse(category);
+                            AdvertCategory ac = new AdvertCategory();
+                            ac.AdvertID = advert.ID;
+                            ac.CategoryID = categoryId;
+                            db.AdvertCategories.Add(ac);
+                        }
+                    }
+                    //user equip
+                    advert.UserID = User.Identity.GetUserId();
+                    advert.User = db.Users.Find(advert.UserID);
+                    //date set
+                    advert.Date = DateTime.Now;
+                    db.Adverts.Add(advert);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+               
             }
 
             ViewBag.Categories = new MultiSelectList(db.Categories, "ID", "Name");
@@ -128,18 +148,41 @@ namespace AdvertProject.Controllers
                 return RedirectToAction("Index");
             }
 
+            List<string> selectedCategories = null;
             if (ModelState.IsValid)
             {
-                foreach(AdvertCategory ac in db.AdvertCategories.Where(x => x.AdvertID == advert.ID))
-                {
-                    db.AdvertCategories.Remove(ac);
-                }
-               
+                //save choosed categories
                 String categoryIds = form["categories"];
                 if (categoryIds != null)
                 {
-                    List<string> choosesList = categoryIds.Split(',').ToList();
-                    foreach (string category in choosesList)
+                    selectedCategories = categoryIds.Split(',').ToList();
+                }
+                else
+                {
+                    selectedCategories = new List<string>();
+                }
+                //Content validation in case of forbiden words
+                List<ForbidenWord> forbidenWords = db.ForbidenWords.ToList();
+                bool contentSafe = true;
+
+                foreach (ForbidenWord f in forbidenWords)
+                {
+                    if (advert.Content.Contains(f.Content))
+                    {
+                        contentSafe = false;
+                        ModelState.AddModelError("Content", "Ogłoszenie zawiera zakazane słowo: " + f.Content);
+                    }
+                }
+                if (contentSafe == true)
+                {
+                    //Deleting all categories
+                    foreach (AdvertCategory ac in db.AdvertCategories.Where(x => x.AdvertID == advert.ID))
+                    {
+                        db.AdvertCategories.Remove(ac);
+                    }
+                    //Adding edited categories
+
+                    foreach (string category in selectedCategories)
                     {
                         int categoryId = Int32.Parse(category);
                         AdvertCategory ac = new AdvertCategory();
@@ -147,19 +190,22 @@ namespace AdvertProject.Controllers
                         ac.CategoryID = categoryId;
                         db.AdvertCategories.Add(ac);
                     }
+                    //Setting new time - TODO: check if needed - mayby modified flag?
+                    advert.Date = DateTime.Now;
+                    db.Entry(advert).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
                 }
-                advert.Date = DateTime.Now;
-                db.Entry(advert).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
             }
-
-            List<string> selectedCategories = new List<string>();
-            foreach (AdvertCategory category in advert.categories.ToList())
+            //If is true, if advert contains forbidden word
+            if(selectedCategories == null)
             {
-                selectedCategories.Add(category.CategoryID.ToString());
+                advert = db.Adverts.Where(x => x.ID == advert.ID).Include(x => x.categories).FirstOrDefault();
+                foreach (AdvertCategory category in advert.categories.ToList())
+                {
+                    selectedCategories.Add(category.CategoryID.ToString());
+                }
             }
-
             ViewBag.Categories = new MultiSelectList(db.Categories, "ID", "Name", selectedCategories);
             return View(advert);
         }

@@ -37,5 +37,7 @@ namespace AdvertProject.Models
         public DbSet<Advert> Adverts { get; set; }
         public DbSet<AdvertCategory> AdvertCategories { get; set; }
         public DbSet<Category> Categories { get; set; }
+
+        public DbSet<ForbidenWord> ForbidenWords { get; set; }
     }
 }

@@ -171,6 +171,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdvertsController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\ForbidenWordsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -188,11 +189,16 @@
     <Compile Include="Migrations\202212171258165_advert-user.designer.cs">
       <DependentUpon>202212171258165_advert-user.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212181331302_forbiden_words.cs" />
+    <Compile Include="Migrations\202212181331302_forbiden_words.designer.cs">
+      <DependentUpon>202212181331302_forbiden_words.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Advert.cs" />
     <Compile Include="Models\AdvertCategory.cs" />
     <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\ForbidenWord.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -268,6 +274,11 @@
     <Content Include="Views\Adverts\Details.cshtml" />
     <Content Include="Views\Adverts\Edit.cshtml" />
     <Content Include="Views\Adverts\Index.cshtml" />
+    <Content Include="Views\ForbidenWords\Create.cshtml" />
+    <Content Include="Views\ForbidenWords\Delete.cshtml" />
+    <Content Include="Views\ForbidenWords\Details.cshtml" />
+    <Content Include="Views\ForbidenWords\Edit.cshtml" />
+    <Content Include="Views\ForbidenWords\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202212161557440_InitialCreate.resx">
@@ -278,6 +289,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202212171258165_advert-user.resx">
       <DependentUpon>202212171258165_advert-user.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212181331302_forbiden_words.resx">
+      <DependentUpon>202212181331302_forbiden_words.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
