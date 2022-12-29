@@ -15,6 +15,13 @@ namespace AdvertProject.Models
         [Display(Name = "Name")]
         public string Name { get; set; }
 
+
+        [Display(Name = "Kategoria bazowa")]
+        public int? RootCategoryID { get; set; }
+
+        [Display(Name = "Kategoria bazowa")]
+        public virtual Category RootCategory { get; set; }
+
         public ICollection<AdvertCategory> adverts { get; set; }
     }
 }

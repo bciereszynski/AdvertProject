@@ -39,6 +39,7 @@ namespace AdvertProject.Controllers
         // GET: Categories/Create
         public ActionResult Create()
         {
+            ViewBag.Categories = new SelectList(db.Categories, "ID", "Name");
             return View();
         }
 
@@ -47,7 +48,7 @@ namespace AdvertProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name")] Category category)
+        public ActionResult Create([Bind(Include = "ID,Name, RootCategoryID")] Category category)
         {
             if (ModelState.IsValid)
             {
@@ -71,6 +72,7 @@ namespace AdvertProject.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Categories = new SelectList(db.Categories.Where(x => x.ID != id).ToList(), "ID", "Name", category.RootCategoryID);
             return View(category);
         }
 
@@ -79,7 +81,7 @@ namespace AdvertProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Name")] Category category)
+        public ActionResult Edit([Bind(Include = "ID,Name,RootCategoryID")] Category category)
         {
             if (ModelState.IsValid)
             {

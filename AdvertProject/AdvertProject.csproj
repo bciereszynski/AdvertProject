@@ -201,6 +201,18 @@
     <Compile Include="Migrations\202212181520544_advert_content_maxlenght.designer.cs">
       <DependentUpon>202212181520544_advert_content_maxlenght.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212291959099_update.cs" />
+    <Compile Include="Migrations\202212291959099_update.designer.cs">
+      <DependentUpon>202212291959099_update.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212292009226_categories.cs" />
+    <Compile Include="Migrations\202212292009226_categories.designer.cs">
+      <DependentUpon>202212292009226_categories.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202212292057578_categoryFix.cs" />
+    <Compile Include="Migrations\202212292057578_categoryFix.designer.cs">
+      <DependentUpon>202212292057578_categoryFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Advert.cs" />
@@ -306,6 +318,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202212181520544_advert_content_maxlenght.resx">
       <DependentUpon>202212181520544_advert_content_maxlenght.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212291959099_update.resx">
+      <DependentUpon>202212291959099_update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212292009226_categories.resx">
+      <DependentUpon>202212292009226_categories.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212292057578_categoryFix.resx">
+      <DependentUpon>202212292057578_categoryFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
