@@ -23,7 +23,32 @@ namespace AdvertProject.Controllers
         public ActionResult Index()
         {
             var adverts = db.Adverts.Include(a => a.User);
+            if(TempData["FilterCategories"] != null)
+            {
+                String categoriesIdsString = Convert.ToString(TempData["FilterCategories"]);
+                List<string> choosesList = categoriesIdsString.Split(',').ToList();
+                foreach (string category in choosesList)
+                {
+                    var id = Int32.Parse(category);
+                    var cat = db.Categories.Where(x => x.ID == id).FirstOrDefault();
+                    adverts = adverts.Where(x => x.categories.Contains(db.AdvertCategories.Where(ac => ac.CategoryID == cat.ID).FirstOrDefault()));
+                }
+            }
+            
             return View(adverts.ToList());
+        }
+
+        public ActionResult Filter()
+        {
+            ViewBag.Categories = new MultiSelectList(db.Categories, "ID", "Name");
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Filter(FormCollection form)
+        {
+            String categoriesIdsString = form["categories"];
+            TempData["FilterCategories"] = categoriesIdsString;
+            return RedirectToAction("Index");
         }
 
         // GET: Adverts/Details/5

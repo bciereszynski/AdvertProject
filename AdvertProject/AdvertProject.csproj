@@ -299,6 +299,7 @@
     <Content Include="Views\ForbidenWords\Details.cshtml" />
     <Content Include="Views\ForbidenWords\Edit.cshtml" />
     <Content Include="Views\ForbidenWords\Index.cshtml" />
+    <Content Include="Views\Adverts\Filter.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202212161557440_InitialCreate.resx">
