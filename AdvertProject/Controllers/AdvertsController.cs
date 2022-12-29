@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using AdvertProject.Migrations;
 using AdvertProject.Models;
@@ -75,13 +76,15 @@ namespace AdvertProject.Controllers
             return View();
         }
 
+        
+
         // POST: Adverts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Content,UserID,Date")] Advert advert, FormCollection form)
+        public ActionResult Create([Bind(Include = "ID,Content,UserID,Date")] Advert advert)
         {
             if (ModelState.IsValid)
             {
@@ -100,8 +103,11 @@ namespace AdvertProject.Controllers
                 }
                 if(contentSafe == true)
                 {
+                    //unvalidated to allow HTML - form is after validation at this point!
+                    var form = this.HttpContext.ApplicationInstance.Context.Request.Unvalidated().Form;
                     //Categories insert
                     String categoryIds = form["categories"];
+
                     if (categoryIds != null)
                     {
                         List<string> choosesList = categoryIds.Split(',').ToList();
@@ -166,7 +172,7 @@ namespace AdvertProject.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "ID,Content,UserID,Date")] Advert advert, FormCollection form)
+        public ActionResult Edit([Bind(Include = "ID,Content,UserID,Date")] Advert advert)
         {
             if (User.Identity.GetUserId() != advert.UserID)
             {
@@ -176,6 +182,7 @@ namespace AdvertProject.Controllers
             List<string> selectedCategories = null;
             if (ModelState.IsValid)
             {
+                var form = this.HttpContext.ApplicationInstance.Context.Request.Unvalidated().Form;
                 //save choosed categories
                 String categoryIds = form["categories"];
                 if (categoryIds != null)

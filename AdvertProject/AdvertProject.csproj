@@ -213,6 +213,10 @@
     <Compile Include="Migrations\202212292057578_categoryFix.designer.cs">
       <DependentUpon>202212292057578_categoryFix.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202212292236367_html.cs" />
+    <Compile Include="Migrations\202212292236367_html.designer.cs">
+      <DependentUpon>202212292236367_html.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Advert.cs" />
@@ -328,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202212292057578_categoryFix.resx">
       <DependentUpon>202212292057578_categoryFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202212292236367_html.resx">
+      <DependentUpon>202212292236367_html.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

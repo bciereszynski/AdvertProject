@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
+using System.Web.UI;
 
 namespace ProjectAdvert.Models
 {
+    [OutputCache(NoStore = true, Duration = 0, Location = OutputCacheLocation.None)]
     public class Advert
     {
         [Key]
@@ -16,6 +19,8 @@ namespace ProjectAdvert.Models
         [DataType(DataType.MultilineText)]
         [Required]
         [MaxLength(1500)]
+        [AllowHtml]
+      
         public string Content { get; set; }
 
         public string UserID { get; set; }
