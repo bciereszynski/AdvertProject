@@ -85,42 +85,48 @@ namespace AdvertProject.Controllers
         {
             List<int> openTagIndexes = Regex.Matches(text, "<").Cast<Match>().Select(m => m.Index).ToList();
             List<int> closeTagIndexes = Regex.Matches(text, ">").Cast<Match>().Select(m => m.Index).ToList();
-            if (closeTagIndexes.Count > 0)
-            {
-                StringBuilder sb = new StringBuilder();
-                int previousIndex = 0;
-                foreach (int closeTagIndex in closeTagIndexes)
-                {
-                    var openTagsSubset = openTagIndexes.Where(x => x >= previousIndex && x < closeTagIndex);
-                    if (openTagsSubset.Count() > 0 && closeTagIndex - openTagsSubset.Max() > 1)
-                    {
-                        bool allowed = false;
-                        foreach (var allowedTag in db.HtmlTags.ToList())
-                        {
-                            if (text.Substring(openTagsSubset.Max()+1).StartsWith(allowedTag.Tag))
-                            {
-                                allowed=true;
-                                break;
-                            }
-                        }
-                        sb.Append(text.Substring(previousIndex, openTagsSubset.Max() - previousIndex));
-                    }
-                    else
-                    {
-                        sb.Append(text.Substring(previousIndex, closeTagIndex - previousIndex + 1));
-                    }
-                    previousIndex = closeTagIndex + 1;
-                }
-                if (closeTagIndexes.Max() < text.Length)
-                {
-                    sb.Append(text.Substring(closeTagIndexes.Max() + 1));
-                }
-                return sb.ToString();
-            }
-            else
+            if (closeTagIndexes.Count <= 0)
             {
                 return text;
             }
+
+            StringBuilder sb = new StringBuilder();
+            int previousIndex = 0;
+            foreach (int closeTagIndex in closeTagIndexes)
+            {
+                
+                var openTagsSubset = openTagIndexes.Where(x => x >= previousIndex && x < closeTagIndex);
+                if (openTagsSubset.Count() <= 0 || closeTagIndex - openTagsSubset.Max() <= 1)
+                {
+                    sb.Append(text.Substring(previousIndex, closeTagIndex - previousIndex + 1));
+                    previousIndex = closeTagIndex + 1;
+                    continue;
+                }
+
+                bool allowed = false;
+                int tagSize = 0;
+                foreach (var allowedTag in db.HtmlTags.ToList())
+                {
+                    var testString = text.Substring(openTagsSubset.Max() + 1);
+                    if (testString.StartsWith(allowedTag.Tag) || testString.StartsWith("/"+allowedTag.Tag))
+                    {
+                        allowed = true;
+                        tagSize = allowedTag.Tag.Length;
+                        sb.Append(text.Substring(previousIndex, closeTagIndex - previousIndex +1 ));
+                        break;
+                    }
+                }
+                if (!allowed)
+                {
+                    sb.Append(text.Substring(previousIndex, openTagsSubset.Max() - previousIndex));
+                }
+                previousIndex = closeTagIndex + 1;
+            }
+            if (closeTagIndexes.Max() < text.Length)
+            {
+                sb.Append(text.Substring(closeTagIndexes.Max() + 1));
+            }
+            return sb.ToString();
         }
 
         //first version
