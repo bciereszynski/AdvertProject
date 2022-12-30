@@ -11,6 +11,7 @@ using System.Web.Mvc;
 using AdvertProject.Migrations;
 using AdvertProject.Models;
 using Microsoft.AspNet.Identity;
+using Newtonsoft.Json.Linq;
 using ProjectAdvert.Models;
 using WebGrease.Css.Extensions;
 
@@ -76,6 +77,76 @@ namespace AdvertProject.Controllers
             return View();
         }
 
+
+        private string HtmlTagValidate(string content)
+        {
+            //Prepere list of possible begining of html tags
+            List<int> indexes = new List<int>();
+            for (int index = 0; ; index += 1)
+            {
+                index = content.IndexOf('<', index);
+                if (index == -1)    //no more
+                    break;
+                if (index - 1 >= 0 && content[index - 1] == '\\') //check if escaped
+                {
+                    content.Remove(index - 1, index - 1); //remove escape sing
+                    continue;
+                }
+
+                if (index + 1 < content.Length && content[index + 1] != '/')    //chcek if ending
+                    indexes.Add(index);
+            }
+
+            int HtmlClear(int i)
+            {
+                var index = indexes[i];
+                //two kinds of engings - small e.g <a ... />, big e.g <b>.... </b>
+                int nearestSmall = content.IndexOf("/>", index);
+                int nearestBig = content.IndexOf("</", index);
+                int next;
+                if (nearestSmall == -1 && nearestBig == -1)
+                    return i;
+                if (i + 1 < indexes.Count)
+                    next = indexes[i + 1];
+                else
+                    next = -1;
+                //check if allowed
+                foreach (var allowedTag in db.HtmlTags.ToList())
+                {
+                    if (content.Substring(index + 1).StartsWith(allowedTag.Tag))
+                    {
+                        return i;
+                    }
+                }
+
+                //check if something inside - recursive
+                if (next > -1 && nearestSmall > next && nearestBig > next)
+                    i = HtmlClear(i + 1);
+               
+
+                if (nearestSmall < next || (next == -1 && nearestSmall != -1))
+                {
+                    content = content.Remove(index, nearestSmall - index + 1);
+                }
+                else if (nearestBig < next || (next == -1 && nearestBig != -1))
+                {
+                    content = content.Remove(index, content.IndexOf(">", index) - index + 1);
+                    nearestBig = content.IndexOf("</", index);
+                    content = content.Remove(nearestBig, content.IndexOf(">", nearestBig) - nearestBig + 1);
+                }
+                return i;
+            }
+
+            for (int i = 0; i < indexes.Count; i++)
+            {
+                i = HtmlClear(i);
+            }
+            return content;
+
+        }
+
+        
+
         
 
         // POST: Adverts/Create
@@ -99,10 +170,19 @@ namespace AdvertProject.Controllers
                     {
                         contentSafe = false;
                         ModelState.AddModelError("Content", "Ogłoszenie zawiera zakazane słowo: " + f.Content);
+                        break;
                     }
                 }
                 if(contentSafe == true)
                 {
+
+                    //HTML Tags review
+                    //possible to escape < symbol with '\'
+                    //TODO: TESTYH
+                    var content = advert.Content;
+                    advert.Content = HtmlTagValidate(content);
+
+
                     //unvalidated to allow HTML - form is after validation at this point!
                     var form = this.HttpContext.ApplicationInstance.Context.Request.Unvalidated().Form;
                     //Categories insert
@@ -207,6 +287,10 @@ namespace AdvertProject.Controllers
                 }
                 if (contentSafe == true)
                 {
+                    //HTML TAGS treatment
+                    var content = advert.Content;
+                    advert.Content = HtmlTagValidate(content);
+
                     //Deleting all categories
                     foreach (AdvertCategory ac in db.AdvertCategories.Where(x => x.AdvertID == advert.ID))
                     {

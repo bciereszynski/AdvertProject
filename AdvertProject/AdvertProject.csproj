@@ -302,8 +302,6 @@
     <Content Include="Views\Adverts\Index.cshtml" />
     <Content Include="Views\ForbidenWords\Create.cshtml" />
     <Content Include="Views\ForbidenWords\Delete.cshtml" />
-    <Content Include="Views\ForbidenWords\Details.cshtml" />
-    <Content Include="Views\ForbidenWords\Edit.cshtml" />
     <Content Include="Views\ForbidenWords\Index.cshtml" />
     <Content Include="Views\Adverts\Filter.cshtml" />
     <Content Include="Views\HtmlTags\Create.cshtml" />
