@@ -173,6 +173,7 @@
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\ForbidenWordsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HtmlTagsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -213,9 +214,9 @@
     <Compile Include="Migrations\202212292057578_categoryFix.designer.cs">
       <DependentUpon>202212292057578_categoryFix.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202212292236367_html.cs" />
-    <Compile Include="Migrations\202212292236367_html.designer.cs">
-      <DependentUpon>202212292236367_html.cs</DependentUpon>
+    <Compile Include="Migrations\202212292358537_htmltafs.cs" />
+    <Compile Include="Migrations\202212292358537_htmltafs.designer.cs">
+      <DependentUpon>202212292358537_htmltafs.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -223,6 +224,7 @@
     <Compile Include="Models\AdvertCategory.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\ForbidenWord.cs" />
+    <Compile Include="Models\HtmlTag.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -304,6 +306,9 @@
     <Content Include="Views\ForbidenWords\Edit.cshtml" />
     <Content Include="Views\ForbidenWords\Index.cshtml" />
     <Content Include="Views\Adverts\Filter.cshtml" />
+    <Content Include="Views\HtmlTags\Create.cshtml" />
+    <Content Include="Views\HtmlTags\Delete.cshtml" />
+    <Content Include="Views\HtmlTags\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202212161557440_InitialCreate.resx">
@@ -333,8 +338,8 @@
     <EmbeddedResource Include="Migrations\202212292057578_categoryFix.resx">
       <DependentUpon>202212292057578_categoryFix.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202212292236367_html.resx">
-      <DependentUpon>202212292236367_html.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202212292358537_htmltafs.resx">
+      <DependentUpon>202212292358537_htmltafs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
