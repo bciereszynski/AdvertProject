@@ -5,6 +5,8 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Text.RegularExpressions;
+using System.Text;
 using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
@@ -14,6 +16,8 @@ using Microsoft.AspNet.Identity;
 using Newtonsoft.Json.Linq;
 using ProjectAdvert.Models;
 using WebGrease.Css.Extensions;
+using System.Reflection;
+using System.Web.UI.WebControls;
 
 namespace AdvertProject.Controllers
 {
@@ -77,8 +81,50 @@ namespace AdvertProject.Controllers
             return View();
         }
 
+        private string HtmlTagValidate(string text)
+        {
+            List<int> openTagIndexes = Regex.Matches(text, "<").Cast<Match>().Select(m => m.Index).ToList();
+            List<int> closeTagIndexes = Regex.Matches(text, ">").Cast<Match>().Select(m => m.Index).ToList();
+            if (closeTagIndexes.Count > 0)
+            {
+                StringBuilder sb = new StringBuilder();
+                int previousIndex = 0;
+                foreach (int closeTagIndex in closeTagIndexes)
+                {
+                    var openTagsSubset = openTagIndexes.Where(x => x >= previousIndex && x < closeTagIndex);
+                    if (openTagsSubset.Count() > 0 && closeTagIndex - openTagsSubset.Max() > 1)
+                    {
+                        bool allowed = false;
+                        foreach (var allowedTag in db.HtmlTags.ToList())
+                        {
+                            if (text.Substring(openTagsSubset.Max()+1).StartsWith(allowedTag.Tag))
+                            {
+                                allowed=true;
+                                break;
+                            }
+                        }
+                        sb.Append(text.Substring(previousIndex, openTagsSubset.Max() - previousIndex));
+                    }
+                    else
+                    {
+                        sb.Append(text.Substring(previousIndex, closeTagIndex - previousIndex + 1));
+                    }
+                    previousIndex = closeTagIndex + 1;
+                }
+                if (closeTagIndexes.Max() < text.Length)
+                {
+                    sb.Append(text.Substring(closeTagIndexes.Max() + 1));
+                }
+                return sb.ToString();
+            }
+            else
+            {
+                return text;
+            }
+        }
 
-        private string HtmlTagValidate(string content)
+        //first version
+        /*private string HtmlTagValidate(string content)
         {
             //Prepere list of possible begining of html tags
             List<int> indexes = new List<int>();
@@ -143,7 +189,7 @@ namespace AdvertProject.Controllers
             }
             return content;
 
-        }
+        }*/
 
         
 
