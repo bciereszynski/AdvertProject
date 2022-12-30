@@ -391,7 +391,7 @@ namespace AdvertProject.Controllers
             {
                 return HttpNotFound();
             }
-            if (User.Identity.GetUserId() != advert.UserID)
+            if (User.Identity.GetUserId() != advert.UserID && !User.IsInRole("Admin"))
             {
                 return RedirectToAction("Index");
             }
@@ -404,7 +404,7 @@ namespace AdvertProject.Controllers
         public ActionResult DeleteConfirmed(int id)
         {
             Advert advert = db.Adverts.Find(id);
-            if (User.Identity.GetUserId() != advert.UserID)
+            if (User.Identity.GetUserId() != advert.UserID && !User.IsInRole("Admin"))
             {
                 return RedirectToAction("Index");
             }

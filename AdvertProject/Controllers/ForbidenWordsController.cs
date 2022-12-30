@@ -10,7 +10,7 @@ using AdvertProject.Models;
 
 namespace AdvertProject.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class ForbidenWordsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

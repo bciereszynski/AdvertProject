@@ -10,6 +10,7 @@ using AdvertProject.Models;
 
 namespace AdvertProject.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class HtmlTagsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();

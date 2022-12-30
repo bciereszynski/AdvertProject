@@ -21,14 +21,21 @@
                 @Html.ActionLink("Ogłoszex", "Index", "Adverts", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Categories", "Index", "Categories")</li>
-                    <li>@Html.ActionLink("Words", "Index", "ForbidenWords")</li>
-                    <li>@Html.ActionLink("Tags", "Index", "HtmlTags")</li>
-                </ul>
+                @{
+                    if (User.IsInRole("Admin"))
+                    {
+
+                        <ul class="nav navbar-nav">
+                            <li>@Html.ActionLink("Categories", "Index", "Categories")</li>
+                            <li>@Html.ActionLink("Words", "Index", "ForbidenWords")</li>
+                            <li>@Html.ActionLink("Tags", "Index", "HtmlTags")</li>
+                        </ul>
+
+                    }
+                }
                 @Html.Partial("_LoginPartial")
             </div>
-        </div>
+         </div>
     </div>
     <div class="container body-content">
         @RenderBody()
