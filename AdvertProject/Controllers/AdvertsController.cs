@@ -18,6 +18,7 @@ using ProjectAdvert.Models;
 using WebGrease.Css.Extensions;
 using System.Reflection;
 using System.Web.UI.WebControls;
+using Microsoft.Ajax.Utilities;
 
 namespace AdvertProject.Controllers
 {
@@ -69,6 +70,18 @@ namespace AdvertProject.Controllers
             {
                 return HttpNotFound();
             }
+            // Licznik odwiedzin
+            var app = HttpContext.Application;
+            string advertId = advert.ID.ToString();
+            var current = app[advertId];
+
+            if (current == null)
+                app[advertId] = 1;
+            else
+                app[advertId] = (int)current + 1;
+
+            ViewBag.VisitCount = app[advertId];
+     
             return View(advert);
         }
 
