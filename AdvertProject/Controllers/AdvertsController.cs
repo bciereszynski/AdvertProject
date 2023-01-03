@@ -15,6 +15,7 @@ using System.Web.UI.WebControls;
 
 using System.ServiceModel.Syndication;
 using System.Data.Entity.Core.Objects;
+using System.Web;
 
 namespace AdvertProject.Controllers
 {
@@ -439,6 +440,19 @@ namespace AdvertProject.Controllers
             db.Adverts.Remove(advert);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult ChangeLanguage(string lang)
+        {
+            HttpCookie cookie = Request.Cookies["lang"];
+            if (cookie == null)
+            {
+                cookie = new HttpCookie("lang");
+            }
+            cookie.Value = lang;
+            cookie.Expires = DateTime.UtcNow.AddDays(30);
+            Response.Cookies.Add(cookie);
+            return RedirectToAction("Index", "Adverts");
         }
 
         protected override void Dispose(bool disposing)
