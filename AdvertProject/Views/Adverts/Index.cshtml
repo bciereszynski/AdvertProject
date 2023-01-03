@@ -20,6 +20,9 @@
             @Html.DisplayNameFor(model => model.Date)
         </th>
         <th></th>
+        <th>
+            @Resources.Content.ViewsCount
+        </th>
     </tr>
 
     @foreach (var item in Model)
@@ -38,6 +41,20 @@
                 @Html.ActionLink(@Resources.Content.Edit, "Edit", new { id = item.ID }) |
                 @Html.ActionLink(@Resources.Content.Details, "Details", new { id = item.ID }) |
                 @Html.ActionLink(@Resources.Content.Delete, "Delete", new { id = item.ID })
+            </td>
+            <td>
+                @{
+                    var app = (HttpApplicationStateWrapper)ViewData["app"];
+                    if (app[item.ID.ToString()] != null)
+                    {
+                        <div>@app[item.ID.ToString()]</div>
+                    }
+                    else
+                    {
+                        <div>0</div>
+                    }
+                }
+
             </td>
         </tr>
     }

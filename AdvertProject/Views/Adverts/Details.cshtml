@@ -9,10 +9,9 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            <div class="row">
-                <div class="col-lg-4">@Resources.Content.ViewsCount + ":"</div>
-                <div class="col-lg-8">@ViewBag.VisitCount</div>
-            </div>
+            <div class="col-lg-4">@Resources.Content.ViewsCount</div>
+            <div class="col-lg-8">@ViewBag.VisitCount</div>
+            
         </dt>
         <dt>
             @Html.DisplayNameFor(model => model.User.Email)

@@ -37,7 +37,9 @@ namespace AdvertProject.Controllers
                     adverts = adverts.Where(x => x.categories.Contains(db.AdvertCategories.Where(ac => ac.CategoryID == cat.ID).FirstOrDefault()));
                 }
             }
-            
+            var app = HttpContext.Application;
+            ViewData["app"] = app;
+
             return View(adverts.ToList());
         }
 
