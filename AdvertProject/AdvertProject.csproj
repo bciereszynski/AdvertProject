@@ -164,6 +164,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Content.de.designer.cs">
+      <DependentUpon>Content.de.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="App_GlobalResources\Content.pl.designer.cs">
       <DependentUpon>Content.pl.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -340,6 +345,10 @@
     <Content Include="App_GlobalResources\Content.pl.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>Content.pl.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Content.de.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Content.de.designer.cs</LastGenOutput>
     </Content>
     <EmbeddedResource Include="Migrations\202212161557440_InitialCreate.resx">
       <DependentUpon>202212161557440_InitialCreate.cs</DependentUpon>

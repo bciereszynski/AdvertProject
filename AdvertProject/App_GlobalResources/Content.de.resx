@@ -118,81 +118,107 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AccountQuestion" xml:space="preserve">
-    <value>Have account already?</value>
+    <value>Haben Sie ein Konto?</value>
+    <comment>Posiadasz już konto?</comment>
   </data>
   <data name="AccountSettings" xml:space="preserve">
-    <value>Account settings</value>
+    <value>Kontoeinstellungen</value>
+    <comment>Ustawienia konta</comment>
   </data>
   <data name="AddAdvert" xml:space="preserve">
-    <value>Add Advert</value>
+    <value>Inserat Addieren</value>
+    <comment>Dodaj ogłoszenie</comment>
   </data>
   <data name="Advert" xml:space="preserve">
-    <value>Advert</value>
+    <value>Inserat</value>
+    <comment>Ogłoszenie</comment>
   </data>
   <data name="Back" xml:space="preserve">
-    <value>Back</value>
+    <value>Zurück</value>
+    <comment>Powrót</comment>
   </data>
   <data name="ChangePassword" xml:space="preserve">
-    <value>Change password</value>
+    <value>Passwort ändern</value>
+    <comment>Zmiana hasła</comment>
   </data>
   <data name="ClickToLogin" xml:space="preserve">
-    <value>Click here to Log in</value>
+    <value>Kliken Sie hier, um sich anzumelden</value>
+    <comment>Kliknij żeby się zalogować</comment>
   </data>
   <data name="Create" xml:space="preserve">
-    <value>Create</value>
+    <value>Schaffen</value>
+    <comment>Stwórz</comment>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete</value>
+    <value>Löschen</value>
+    <comment>Usuń</comment>
   </data>
   <data name="DeleteQuestion" xml:space="preserve">
-    <value>Are you sure you want to delete this?</value>
+    <value>Möchten Sie dies wirklich löschen?</value>
+    <comment>Jesteś pewny, że chcesz to usunąć?</comment>
   </data>
   <data name="Details" xml:space="preserve">
-    <value>Details</value>
+    <value>Einzelheiten</value>
+    <comment>Szczegóły</comment>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value>Edit</value>
+    <value>Bearbeiten</value>
+    <comment>Edytuj</comment>
   </data>
   <data name="EmailConfirmMessage" xml:space="preserve">
-    <value>Thank you for confirming your email</value>
+    <value>Danke für die Bestätigung Ihrer E-Mail</value>
+    <comment>Dziękujemy za potwierdzenie emaila</comment>
   </data>
   <data name="EnterEmail" xml:space="preserve">
-    <value>Enter your email</value>
+    <value>Geben sie ihre E-Mail Adresse ein</value>
+    <comment>Podaj email</comment>
   </data>
   <data name="Error" xml:space="preserve">
-    <value>Error</value>
+    <value>Fehler</value>
+    <comment>Błąd</comment>
   </data>
   <data name="ErrorMessage" xml:space="preserve">
-    <value>An error occurred while processing your request</value>
+    <value>Während Ihrer Anfrage ist ein Fehler aufgetreten</value>
+    <comment>Podczas przetwarzania zapytania wystąpił błąd</comment>
   </data>
   <data name="Filter" xml:space="preserve">
     <value>Filter</value>
+    <comment>Przeglądaj kategorie</comment>
   </data>
   <data name="ForgotPasswordQuestion" xml:space="preserve">
-    <value>Forgot your password?</value>
+    <value>Haben Sie Ihr Passwort vergessen?</value>
+    <comment>Zapomniałeś hasła?</comment>
   </data>
   <data name="Hello" xml:space="preserve">
-    <value>Hello</value>
+    <value>Hallo</value>
+    <comment>Witaj</comment>
   </data>
   <data name="Locked" xml:space="preserve">
-    <value>Locked out</value>
+    <value>Ausgeschlossen</value>
+    <comment>Zablokowano</comment>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>Login</value>
+    <value>Anmeldung</value>
+    <comment>Zaloguj</comment>
   </data>
   <data name="LogOff" xml:space="preserve">
-    <value>Log Off</value>
+    <value>Abmelden</value>
+    <comment>Wyloguj</comment>
   </data>
   <data name="PasswordRecoveryMessage" xml:space="preserve">
-    <value>Please check your email to reset your password</value>
+    <value>Bitte überprüfen Sie Ihre E-Mail, um Ihr Passwort zurückzusetzen</value>
+    <comment>Sprawdź email w celu zresetowania hasła</comment>
   </data>
   <data name="Register" xml:space="preserve">
-    <value>Register</value>
+    <value>Registrieren</value>
+    <comment>Rejestracja</comment>
   </data>
   <data name="Submit" xml:space="preserve">
-    <value>Submit</value>
+    <value>Einreichen</value>
+    <comment>Zatwierdź</comment>
   </data>
   <data name="ViewsCount" xml:space="preserve">
-    <value>Number of views</value>
+    <value>Anzahl der Aufrufe</value>
+    <comment>Ilość wyświetleń</comment>
   </data>
 </root>
