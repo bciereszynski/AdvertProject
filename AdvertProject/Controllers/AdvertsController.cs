@@ -1,24 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Text.RegularExpressions;
 using System.Text;
-using System.Web;
 using System.Web.Helpers;
 using System.Web.Mvc;
-using AdvertProject.Migrations;
 using AdvertProject.Models;
 using Microsoft.AspNet.Identity;
-using Newtonsoft.Json.Linq;
 using ProjectAdvert.Models;
-using WebGrease.Css.Extensions;
-using System.Reflection;
 using System.Web.UI.WebControls;
-using Microsoft.Ajax.Utilities;
+
+using System.ServiceModel.Syndication;
+using System.Data.Entity.Core.Objects;
 
 namespace AdvertProject.Controllers
 {
@@ -210,6 +206,21 @@ namespace AdvertProject.Controllers
 
         }*/
 
+        private void UpdateRss()
+        {
+            var rssItems = new List<SyndicationItem>();
+
+            var advertsContent = db.Adverts.Where(a=> EntityFunctions.TruncateTime(a.Date) == EntityFunctions.TruncateTime(DateTime.Now)).AsNoTracking().ToList();
+            advertsContent
+                .ForEach(a => rssItems.Add(
+                    new SyndicationItem(a.ID.ToString(), a.Content, new Uri(Request.Url.Scheme + "://" + Request.Url.Authority + "/Adverts/Details/" + a.ID.ToString())
+                    )));
+            var feed = new SyndicationFeed("Ogloszex", "Najnowsze ogloszenia na stronie Ogloszex", new Uri(Request.Url.Scheme + "://" + Request.Url.Authority + "/Rss"), "Rss feed id", DateTime.Now, rssItems);
+
+
+            var app = HttpContext.Application;
+            app["RssFeed"] = feed;
+        }
         
 
         
@@ -225,7 +236,6 @@ namespace AdvertProject.Controllers
             if (ModelState.IsValid)
             {
                 //Content validation in case of forbiden words
-
                 List<ForbidenWord> forbidenWords = db.ForbidenWords.ToList();
                 bool contentSafe = true;
 
@@ -240,10 +250,7 @@ namespace AdvertProject.Controllers
                 }
                 if(contentSafe == true)
                 {
-
                     //HTML Tags review
-                    //possible to escape < symbol with '\'
-                    //TODO: TESTYH
                     var content = advert.Content;
                     advert.Content = HtmlTagValidate(content);
 
@@ -272,11 +279,15 @@ namespace AdvertProject.Controllers
                     advert.Date = DateTime.Now;
                     db.Adverts.Add(advert);
                     db.SaveChanges();
+
+                    ////RSS
+                    UpdateRss();
+                    
+                    
                     return RedirectToAction("Index");
                 }
                
             }
-
             ViewBag.Categories = new MultiSelectList(db.Categories, "ID", "Name");
             return View(advert);
         }
@@ -375,6 +386,8 @@ namespace AdvertProject.Controllers
                     advert.Date = DateTime.Now;
                     db.Entry(advert).State = EntityState.Modified;
                     db.SaveChanges();
+                    ////RSS
+                    UpdateRss();
                     return RedirectToAction("Index");
                 }
             }
