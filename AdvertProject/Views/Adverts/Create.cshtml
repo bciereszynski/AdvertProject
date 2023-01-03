@@ -5,14 +5,14 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>@Resources.Content.Create</h2>
 
 
 @using (Html.BeginForm("Create", "Adverts", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form_class", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
-    <h4>Advert</h4>
+    <h4>@Resources.Content.Advert</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form_div">
@@ -32,11 +32,11 @@
     <div class="form_div">
         
 
-        <input type="submit" value="Create" class="btn btn-default" />
+        <input type="submit" value=@Resources.Content.Create class="btn btn-default" />
     </div>
 
     <div class="info_div">
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink(@Resources.Content.Back, "Index")
     </div>
 }
 

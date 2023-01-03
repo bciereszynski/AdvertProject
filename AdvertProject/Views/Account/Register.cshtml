@@ -14,7 +14,7 @@
     <div class="form_div">
         @Html.LabelFor(m => m.Email, htmlAttributes: new { @class = "control-label" })
         @Html.TextBoxFor(m => m.Email, new { @class = "form-control field_class" })
-        @*Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })*@
+        @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
     </div>
 
     <div class="form_div">
@@ -26,11 +26,11 @@
         @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control field_class" })
     </div>
 
-    <input class="submit_class" type="submit" value="Zarejestruj" />
+    <input class="submit_class" type="submit" value=@Resources.Content.Register />
 
     <div class="info_div">
         <br>
-        <p>Masz już konto? <a href="./Login">Zaloguj się</a></p>
+        <p>@Resources.Content.AccountQuestion <a href="./Login">@Resources.Content.Login</a></p>
     </div>
 }
 

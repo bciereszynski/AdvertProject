@@ -1,28 +1,26 @@
-﻿
-
+﻿@model ProjectAdvert.Models.Advert
 @{
     ViewBag.Title = "Filter";
 }
 
-<h2>Filter</h2>
 
 
 @using (Html.BeginForm("Filter", "Adverts", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form_class", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form_div">
+<div class="form_div">
 
-        @Html.Label("Kategorie", htmlAttributes: new { @class = "control-label" })
-        @Html.DropDownList("categories", null, htmlAttributes: new { @class = "form-control field_class", multiple = "multiple" })
-    </div>
+    @Html.LabelFor(model => model.categories, "Kategorie", htmlAttributes: new { @class = "control-label" })
+    @Html.DropDownList("categories", null, htmlAttributes: new { @class = "form-control field_class", multiple = "multiple" })
+</div>
 
     <div class="form_div">
-        <input type="submit" value="Filter" class="btn btn-default" />
+        <input type="submit" value=@Resources.Content.Filter class="btn btn-default" />
     </div>
 
     <div class="info_div">
-        @Html.ActionLink("Back to List", "Index")
+        @Html.ActionLink(@Resources.Content.Back, "Index")
     </div>
 }
 

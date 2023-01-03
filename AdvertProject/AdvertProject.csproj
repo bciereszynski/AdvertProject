@@ -163,6 +163,21 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Content.pl.designer.cs">
+      <DependentUpon>Content.pl.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\Content.en.designer.cs">
+      <DependentUpon>Content.en.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="App_GlobalResources\Content.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Content.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -311,6 +326,18 @@
     <Content Include="Views\HtmlTags\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_GlobalResources\Content.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Content.Designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Content.en.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Content.en.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\Content.pl.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Content.pl.designer.cs</LastGenOutput>
+    </Content>
     <EmbeddedResource Include="Migrations\202212161557440_InitialCreate.resx">
       <DependentUpon>202212161557440_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>

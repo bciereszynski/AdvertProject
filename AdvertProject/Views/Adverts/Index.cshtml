@@ -4,10 +4,9 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-@Html.ActionLink("Filter", "Filter")
+@Html.ActionLink(@Resources.Content.Filter, "Filter")
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink(@Resources.Content.AddAdvert, "Create")
 </p>
 <table class="table">
     <tr>
@@ -36,9 +35,9 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                @Html.ActionLink(@Resources.Content.Edit, "Edit", new { id = item.ID }) |
+                @Html.ActionLink(@Resources.Content.Details, "Details", new { id = item.ID }) |
+                @Html.ActionLink(@Resources.Content.Delete, "Delete", new { id = item.ID })
             </td>
         </tr>
     }

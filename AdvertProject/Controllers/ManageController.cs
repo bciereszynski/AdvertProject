@@ -322,6 +322,19 @@ namespace AdvertProject.Controllers
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
         }
 
+        public ActionResult ChangeLanguage(string lang)
+        {
+            HttpCookie cookie = Request.Cookies["lang"];
+            if (cookie == null)
+            {
+                cookie = new HttpCookie("lang");
+            }
+            cookie.Value = lang;
+            cookie.Expires = DateTime.UtcNow.AddDays(30);
+            Response.Cookies.Add(cookie);
+            return RedirectToAction("Index", "Adverts");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && _userManager != null)

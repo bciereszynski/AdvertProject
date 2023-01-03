@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Ogłoszex</title>
     <link href="~/Content/Images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -41,7 +41,11 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>
+                <a href="@Url.Action("ChangeLanguage", "Manage", new {lang = "en"})"> English</a>
+                <a href="@Url.Action("ChangeLanguage", "Manage", new {lang = "pl"})"> Polish</a>
+            </p>
+            
         </footer>
     </div>
 
