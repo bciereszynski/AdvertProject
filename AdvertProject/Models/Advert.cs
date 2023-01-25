@@ -15,7 +15,7 @@ namespace ProjectAdvert.Models
         [Key]
         public int ID { get; set; }
 
-        [Display(Name = "Ogłoszenie")]
+        [Display(Name = "Advert", ResourceType = typeof(Resources.Content))]
         [DataType(DataType.MultilineText)]
         [Required]
         [MaxLength(1500)]
@@ -26,11 +26,11 @@ namespace ProjectAdvert.Models
         public string UserID { get; set; }
         public virtual ApplicationUser User { get; set; }
 
-        [Display(Name = "Data")]
+        [Display(Name = "Date", ResourceType = typeof(Resources.Content))]
         [DataType(DataType.Date)]
         public DateTime? Date { get; set; }
 
-        [Display(Name = "Kategorie")]
+        [Display(Name = "Category", ResourceType = typeof(Resources.Content))]
         public ICollection<AdvertCategory> categories{ get; set; }
 
     }

@@ -12,7 +12,7 @@ namespace AdvertProject.Models
         [Key]
         public int ID { get; set; }
 
-        [Display(Name = "Słowo zakazane")]
+        [Display(Name = "ForbiddenWord",  ResourceType = typeof(Resources.Content))]
         [Required]
         public string Content { get; set; }
     }

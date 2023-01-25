@@ -12,14 +12,14 @@ namespace AdvertProject.Models
         public int ID { get; set; }
 
         [Required]
-        [Display(Name = "Name")]
+        [Display(Name = "Name", ResourceType = typeof(Resources.Content))]
         public string Name { get; set; }
 
 
-        [Display(Name = "Kategoria bazowa")]
+        [Display(Name = "BaseCategory", ResourceType = typeof(Resources.Content))]
         public int? RootCategoryID { get; set; }
 
-        [Display(Name = "Kategoria bazowa")]
+        [Display(Name = "BaseCategory", ResourceType = typeof(Resources.Content))]
         public virtual Category RootCategory { get; set; }
 
         public ICollection<AdvertCategory> adverts { get; set; }

@@ -164,22 +164,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_GlobalResources\Content.de.designer.cs">
+    <Compile Include="Resources\Content.de.designer.cs">
       <DependentUpon>Content.de.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="App_GlobalResources\Content.pl.designer.cs">
+    <Compile Include="Resources\Content.pl.designer.cs">
       <DependentUpon>Content.pl.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="App_GlobalResources\Content.en.designer.cs">
+    <Compile Include="Resources\Content.en.designer.cs">
       <DependentUpon>Content.en.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="App_GlobalResources\Content.Designer.cs">
+    <Compile Include="Resources\Content.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Content.resx</DependentUpon>
@@ -316,12 +316,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Categories\Create.cshtml" />
     <Content Include="Views\Categories\Delete.cshtml" />
-    <Content Include="Views\Categories\Details.cshtml" />
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Categories\Index.cshtml" />
     <Content Include="Views\Adverts\Create.cshtml" />
     <Content Include="Views\Adverts\Delete.cshtml" />
-    <Content Include="Views\Adverts\Details.cshtml" />
     <Content Include="Views\Adverts\Edit.cshtml" />
     <Content Include="Views\Adverts\Index.cshtml" />
     <Content Include="Views\ForbidenWords\Create.cshtml" />
@@ -332,24 +330,29 @@
     <Content Include="Views\HtmlTags\Delete.cshtml" />
     <Content Include="Views\HtmlTags\Index.cshtml" />
     <Content Include="Views\Rss\Index.cshtml" />
+    <Content Include="Views\Adverts\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_GlobalResources\Content.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
+    <EmbeddedResource Include="Resources\Content.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Content.Designer.cs</LastGenOutput>
-    </Content>
-    <Content Include="App_GlobalResources\Content.en.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Content.en.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Content.en.designer.cs</LastGenOutput>
-    </Content>
-    <Content Include="App_GlobalResources\Content.pl.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Content.pl.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Content.pl.designer.cs</LastGenOutput>
-    </Content>
-    <Content Include="App_GlobalResources\Content.de.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Content.de.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Content.de.designer.cs</LastGenOutput>
-    </Content>
+      <CustomToolNamespace>Resources</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202212161557440_InitialCreate.resx">
       <DependentUpon>202212161557440_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>

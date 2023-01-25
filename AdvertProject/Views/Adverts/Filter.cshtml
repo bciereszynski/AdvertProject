@@ -11,7 +11,7 @@
 
 <div class="form_div">
 
-    @Html.LabelFor(model => model.categories, "Kategorie", htmlAttributes: new { @class = "control-label" })
+    @Html.LabelFor(model => model.categories, @Resources.Content.Category, htmlAttributes: new { @class = "control-label" })
     @Html.DropDownList("categories", null, htmlAttributes: new { @class = "form-control field_class", multiple = "multiple" })
 </div>
 

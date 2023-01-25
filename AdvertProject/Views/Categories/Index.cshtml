@@ -7,7 +7,7 @@
 <h2>Index</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink(@Resources.Content.Create, "Create")
 </p>
 <table class="table">
     <tr>
@@ -24,7 +24,6 @@
         </td>
         <td>
             @Html.ActionLink(@Resources.Content.Edit, "Edit", new { id = item.ID }) |
-            @Html.ActionLink(@Resources.Content.Details, "Details", new { id = item.ID }) |
             @Html.ActionLink(@Resources.Content.Delete, "Delete", new { id = item.ID })
         </td>
     </tr>
