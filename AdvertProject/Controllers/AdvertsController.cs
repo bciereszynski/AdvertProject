@@ -16,33 +16,13 @@ using System.Web.UI.WebControls;
 using System.ServiceModel.Syndication;
 using System.Data.Entity.Core.Objects;
 using System.Web;
+using Microsoft.Ajax.Utilities;
 
 namespace AdvertProject.Controllers
 {
     public class AdvertsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
-        // GET: Adverts
-        public ActionResult Index()
-        {
-            var adverts = db.Adverts.Include(a => a.User);
-            if(TempData["FilterCategories"] != null)
-            {
-                String categoriesIdsString = Convert.ToString(TempData["FilterCategories"]);
-                List<string> choosesList = categoriesIdsString.Split(',').ToList();
-                foreach (string category in choosesList)
-                {
-                    var id = Int32.Parse(category);
-                    var cat = db.Categories.Where(x => x.ID == id).FirstOrDefault();
-                    adverts = adverts.Where(x => x.categories.Contains(db.AdvertCategories.Where(ac => ac.CategoryID == cat.ID).FirstOrDefault()));
-                }
-            }
-            var app = HttpContext.Application;
-            ViewData["app"] = app;
-
-            return View(adverts.ToList());
-        }
 
         public ActionResult Filter()
         {
@@ -208,6 +188,33 @@ namespace AdvertProject.Controllers
             return content;
 
         }*/
+
+        // GET: Adverts
+        public ActionResult Index()
+        {
+            IQueryable<Advert> adverts = db.Adverts.Include(a => a.User);
+            if (TempData["FilterCategories"] != null)
+            {
+                adverts = adverts.Where(x => 1 == 0);
+                String categoriesIdsString = Convert.ToString(TempData["FilterCategories"]);
+                List<string> choosesList = categoriesIdsString.Split(',').ToList();
+                foreach (string category in choosesList)
+                {
+                    var advertsTmp = db.Adverts.Include(a => a.User);
+                    var id = Int32.Parse(category);
+                    var cat = db.Categories.Where(x => x.ID == id).FirstOrDefault();
+                    advertsTmp = advertsTmp.Where(x => x.categories.Contains(db.AdvertCategories.Where(ac => ac.CategoryID == cat.ID).FirstOrDefault()));
+                    adverts = adverts.Union(advertsTmp);
+                    advertsTmp = db.Adverts.Include(a => a.User);
+                    advertsTmp = advertsTmp.Where(x => x.categories.Contains(db.AdvertCategories.Where(ac => ac.Category.RootCategory.ID == cat.ID).FirstOrDefault()));
+                    adverts = adverts.Union(advertsTmp);
+                }
+            }
+            var app = HttpContext.Application;
+            ViewData["app"] = app;
+
+            return View(adverts.ToList());
+        }
 
         private void UpdateRss()
         {
