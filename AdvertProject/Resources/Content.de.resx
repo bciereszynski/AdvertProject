@@ -137,6 +137,12 @@
     <value>Zurück</value>
     <comment>Powrót</comment>
   </data>
+  <data name="BaseCategory" xml:space="preserve">
+    <value>Basiskategorie</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Kategorie</value>
+  </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>Passwort ändern</value>
     <comment>Zmiana hasła</comment>
@@ -148,6 +154,9 @@
   <data name="Create" xml:space="preserve">
     <value>Schaffen</value>
     <comment>Stwórz</comment>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Datum</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Löschen</value>
@@ -164,6 +173,9 @@
   <data name="Edit" xml:space="preserve">
     <value>Bearbeiten</value>
     <comment>Edytuj</comment>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
   </data>
   <data name="EmailConfirmMessage" xml:space="preserve">
     <value>Danke für die Bestätigung Ihrer E-Mail</value>
@@ -205,6 +217,15 @@
     <value>Abmelden</value>
     <comment>Wyloguj</comment>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>altes Passwort</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Passwort</value>
+  </data>
   <data name="PasswordRecoveryMessage" xml:space="preserve">
     <value>Bitte überprüfen Sie Ihre E-Mail, um Ihr Passwort zurückzusetzen</value>
     <comment>Sprawdź email w celu zresetowania hasła</comment>
@@ -212,6 +233,12 @@
   <data name="Register" xml:space="preserve">
     <value>Registrieren</value>
     <comment>Rejestracja</comment>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Erinnere dich an mich?</value>
+  </data>
+  <data name="RepetPassword" xml:space="preserve">
+    <value>Wiederhole das Passwort</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Einreichen</value>

@@ -132,6 +132,12 @@
   <data name="Back" xml:space="preserve">
     <value>Powrót</value>
   </data>
+  <data name="BaseCategory" xml:space="preserve">
+    <value>Podstawowa kategoria</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Kategoria</value>
+  </data>
   <data name="ChangePassword" xml:space="preserve">
     <value>Zmiana hasła</value>
   </data>
@@ -140,6 +146,9 @@
   </data>
   <data name="Create" xml:space="preserve">
     <value>Stwórz</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Data</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Usuń</value>
@@ -183,11 +192,26 @@
   <data name="LogOff" xml:space="preserve">
     <value>Wyloguj</value>
   </data>
+  <data name="Name" xml:space="preserve">
+    <value>Nazwa</value>
+  </data>
+  <data name="OldPassword" xml:space="preserve">
+    <value>Stare hasło</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Hasło</value>
+  </data>
   <data name="PasswordRecoveryMessage" xml:space="preserve">
     <value>Sprawdź email w celu zresetowania hasła</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Rejestracja</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>Zapamiętać?</value>
+  </data>
+  <data name="RepetPassword" xml:space="preserve">
+    <value>Powtórz hasło</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>Zatwierdź</value>
