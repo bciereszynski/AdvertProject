@@ -4,26 +4,30 @@
     ViewBag.Title = "Index";
 }
 
+@Styles.Render("~/Content/Site.css")
+
 @Html.ActionLink(@Resources.Content.Filter, "Filter")
 <p>
     @Html.ActionLink(@Resources.Content.AddAdvert, "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.User.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Content)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Date)
-        </th>
-        <th></th>
-        <th>
-            @Resources.Content.ViewsCount
-        </th>
-    </tr>
+<table class="styled-table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.User.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th></th>
+            <th>
+                @Resources.Content.ViewsCount
+            </th>
+        </tr>
+    </thead>
 
     @foreach (var item in Model)
     {

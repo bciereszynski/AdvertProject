@@ -41,6 +41,7 @@ textarea {
     #ba7143 - dark prim
     #a5c0b9 - light blue
     #4c525d - dark grey
+    #009879 - dark green
 */
 
 
@@ -107,3 +108,47 @@ textarea {
     box-shadow: 2px 2px 4px rgb(0,0,0,0.2);
     cursor: pointer;
 }
+
+/*
+    Create Css for Table Content:
+*/
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border: 2px solid #009879;
+}
+
+    /* Header style */
+    .styled-table thead tr,
+    .styled-table thead th {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: center;
+    }
+
+    /* Cells style */
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+    }
+
+    /* Rows */
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+        background-color: #a5c0b9;
+    }
+
+        .styled-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        .styled-table tbody tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+
