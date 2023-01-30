@@ -117,11 +117,13 @@ textarea {
     margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
-    min-width: 400px;
+    min-width: 600px;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
     border: 2px solid #009879;
+    width: 100%;
+    table-layout: fixed;
 }
 
     /* Header style */
@@ -129,14 +131,18 @@ textarea {
     .styled-table thead th {
         background-color: #009879;
         color: #ffffff;
-        text-align: center;
+        text-align: left;
     }
 
     /* Cells style */
     .styled-table th,
     .styled-table td {
         padding: 12px 15px;
+        word-wrap: break-word;
+        text-align:left;
+        vertical-align:top;
     }
+
 
     /* Rows */
     .styled-table tbody tr {
@@ -144,11 +150,10 @@ textarea {
         background-color: #a5c0b9;
     }
 
-        .styled-table tbody tr:nth-of-type(even) {
-            background-color: #f3f3f3;
-        }
+    .styled-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
 
-        .styled-table tbody tr:last-of-type {
-            border-bottom: 2px solid #009879;
-        }
-
+    .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #009879;
+    }

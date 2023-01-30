@@ -6,61 +6,72 @@
 
 @Styles.Render("~/Content/Site.css")
 
-@Html.ActionLink(@Resources.Content.Filter, "Filter")
-<p>
-    @Html.ActionLink(@Resources.Content.AddAdvert, "Create")
-</p>
-<table class="styled-table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.User.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Content)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th></th>
-            <th>
-                @Resources.Content.ViewsCount
-            </th>
-        </tr>
-    </thead>
+<p style= "margin-top:25px">
+    @Html.ActionLink(@Resources.Content.Filter, "Filter", null, new {@Class = "btn btn-default"})
+    @Html.ActionLink(@Resources.Content.AddAdvert, "Create", null, new { @Class = "btn btn-default"})
+</p,>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.User.Email)
-            </td>
-            <td>
-                @Html.Raw(item.Content)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.ActionLink(@Resources.Content.Edit, "Edit", new { id = item.ID }) |
-                @Html.ActionLink(@Resources.Content.Details, "Details", new { id = item.ID }) |
-                @Html.ActionLink(@Resources.Content.Delete, "Delete", new { id = item.ID })
-            </td>
-            <td>
-                @{
-                    var app = (HttpApplicationStateWrapper)ViewData["app"];
-                    if (app[item.ID.ToString()] != null)
-                    {
-                        <div>@app[item.ID.ToString()]</div>
+    <table class="styled-table">
+
+        <colgroup>
+            <col span="1" style="width: 20%;">
+            <col span="1" style="width: 60%;">
+            <col span="1" style="width: 15%;">
+            <col span="1" style="width: 10%;">
+            <col span="1" style="width: 5%;">
+        </colgroup>
+
+
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.User.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Content)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Email)
+                </td>
+                <td>
+                    @Html.Raw(item.Content)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td style="vertical-align:middle">
+                    @Html.ActionLink(@Resources.Content.Edit, "Edit", new { id = item.ID }) <br>
+                    @Html.ActionLink(@Resources.Content.Details, "Details", new { id = item.ID })<br>
+                    @Html.ActionLink(@Resources.Content.Delete, "Delete", new { id = item.ID })
+                </td>
+                <td style="text-align: center; vertical-align:middle">
+                    @{
+                        var app = (HttpApplicationStateWrapper)ViewData["app"];
+                        if (app[item.ID.ToString()] != null)
+                        {
+                            <div>@app[item.ID.ToString()]</div>
+                        }
+                        else
+                        {
+                            <div>0</div>
+                        }
                     }
-                    else
-                    {
-                        <div>0</div>
-                    }
-                }
 
-            </td>
-        </tr>
-    }
+                </td>
+            </tr>
+        }
 
-</table>
+    </table>
+
