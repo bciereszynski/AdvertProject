@@ -207,6 +207,9 @@
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="PasswordRecovery" xml:space="preserve">
+    <value>Password Recovery</value>
+  </data>
   <data name="PasswordRecoveryMessage" xml:space="preserve">
     <value>Please check your email to reset your password</value>
   </data>

@@ -201,6 +201,9 @@
   <data name="Password" xml:space="preserve">
     <value>Hasło</value>
   </data>
+  <data name="PasswordRecovery" xml:space="preserve">
+    <value>Odzyskiwanie hasła</value>
+  </data>
   <data name="PasswordRecoveryMessage" xml:space="preserve">
     <value>Sprawdź email w celu zresetowania hasła</value>
   </data>
