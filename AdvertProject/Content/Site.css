@@ -134,13 +134,19 @@ textarea {
         text-align: left;
     }
 
+    .styled-table colgroup col {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+    }
+
     /* Cells style */
     .styled-table th,
     .styled-table td {
         padding: 12px 15px;
         word-wrap: break-word;
-        text-align:left;
-        vertical-align:top;
+        text-align: left;
+        vertical-align: top;
     }
 
 
@@ -157,3 +163,11 @@ textarea {
     .styled-table tbody tr:last-of-type {
         border-bottom: 2px solid #009879;
     }
+
+.ddContent {
+    word-wrap: break-word;
+    background-color: #ffffff;
+    padding: 10px 10px;
+    border:thin solid black;
+    border-radius: 5px;
+}

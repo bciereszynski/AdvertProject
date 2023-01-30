@@ -9,24 +9,11 @@
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            <div class="col-lg-4">@Resources.Content.ViewsCount</div>
-            <div class="col-lg-8">@ViewBag.VisitCount</div>
-            
-        </dt>
-        <dt>
             @Html.DisplayNameFor(model => model.User.Email)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.User.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Content)
         </dd>
 
         <dt>
@@ -37,9 +24,16 @@
             @Html.DisplayFor(model => model.Date)
         </dd>
 
+        <dt>
+            @Html.DisplayNameFor(model => model.Content)
+        </dt>
+
+        <dd class="ddContent">
+            @Html.DisplayFor(model => model.Content)
+        </dd>
     </dl>
 </div>
 <p>
-    @Html.ActionLink(@Resources.Content.Edit, "Edit", new { id = Model.ID }) |
-    @Html.ActionLink(@Resources.Content.Back, "Index")
+    @Html.ActionLink(@Resources.Content.Edit, "Edit", new { id = Model.ID }, new { @Class = "btn btn-default" }) |
+    @Html.ActionLink(@Resources.Content.Back, "Index", null, new { @Class = "btn btn-default" })
 </p>
