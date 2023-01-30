@@ -44,7 +44,7 @@ namespace AdvertProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Advert advert = db.Adverts.Find(id);
+            Advert advert = db.Adverts.Include(x => x.categories).FirstOrDefault(z => z.ID == id);
             if (advert == null)
             {
                 return HttpNotFound();
@@ -53,6 +53,8 @@ namespace AdvertProject.Controllers
             var app = HttpContext.Application;
             string advertId = advert.ID.ToString();
             var current = app[advertId];
+            //TODO: Pobranie kategorii
+
 
             if (current == null)
                 app[advertId] = 1;
@@ -60,7 +62,7 @@ namespace AdvertProject.Controllers
                 app[advertId] = (int)current + 1;
 
             ViewBag.VisitCount = app[advertId];
-     
+
             return View(advert);
         }
 
@@ -69,7 +71,7 @@ namespace AdvertProject.Controllers
         public ActionResult Create()
         {
             ViewBag.Categories = new MultiSelectList(db.Categories, "ID", "Name");
-  
+
             return View();
         }
 
@@ -86,7 +88,7 @@ namespace AdvertProject.Controllers
             int previousIndex = 0;
             foreach (int closeTagIndex in closeTagIndexes)
             {
-                
+
                 var openTagsSubset = openTagIndexes.Where(x => x >= previousIndex && x < closeTagIndex);
                 if (openTagsSubset.Count() <= 0 || closeTagIndex - openTagsSubset.Max() <= 1)
                 {
@@ -100,11 +102,11 @@ namespace AdvertProject.Controllers
                 foreach (var allowedTag in db.HtmlTags.ToList())
                 {
                     var testString = text.Substring(openTagsSubset.Max() + 1);
-                    if (testString.StartsWith(allowedTag.Tag) || testString.StartsWith("/"+allowedTag.Tag))
+                    if (testString.StartsWith(allowedTag.Tag) || testString.StartsWith("/" + allowedTag.Tag))
                     {
                         allowed = true;
                         tagSize = allowedTag.Tag.Length;
-                        sb.Append(text.Substring(previousIndex, closeTagIndex - previousIndex +1 ));
+                        sb.Append(text.Substring(previousIndex, closeTagIndex - previousIndex + 1));
                         break;
                     }
                 }
@@ -220,7 +222,7 @@ namespace AdvertProject.Controllers
         {
             var rssItems = new List<SyndicationItem>();
 
-            var advertsContent = db.Adverts.Where(a=> EntityFunctions.TruncateTime(a.Date) == EntityFunctions.TruncateTime(DateTime.Now)).AsNoTracking().ToList();
+            var advertsContent = db.Adverts.Where(a => EntityFunctions.TruncateTime(a.Date) == EntityFunctions.TruncateTime(DateTime.Now)).AsNoTracking().ToList();
             advertsContent
                 .ForEach(a => rssItems.Add(
                     new SyndicationItem(a.ID.ToString(), a.Content, new Uri(Request.Url.Scheme + "://" + Request.Url.Authority + "/Adverts/Details/" + a.ID.ToString())
@@ -231,9 +233,9 @@ namespace AdvertProject.Controllers
             var app = HttpContext.Application;
             app["RssFeed"] = feed;
         }
-        
 
-        
+
+
 
         // POST: Adverts/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -249,7 +251,7 @@ namespace AdvertProject.Controllers
                 List<ForbidenWord> forbidenWords = db.ForbidenWords.ToList();
                 bool contentSafe = true;
 
-                foreach(ForbidenWord f in forbidenWords)
+                foreach (ForbidenWord f in forbidenWords)
                 {
                     if (advert.Content.Contains(f.Content))
                     {
@@ -258,7 +260,7 @@ namespace AdvertProject.Controllers
                         break;
                     }
                 }
-                if(contentSafe == true)
+                if (contentSafe == true)
                 {
                     //HTML Tags review
                     var content = advert.Content;
@@ -292,11 +294,11 @@ namespace AdvertProject.Controllers
 
                     ////RSS
                     UpdateRss();
-                    
-                    
+
+
                     return RedirectToAction("Index");
                 }
-               
+
             }
             ViewBag.Categories = new MultiSelectList(db.Categories, "ID", "Name");
             return View(advert);
@@ -306,7 +308,7 @@ namespace AdvertProject.Controllers
         [Authorize]
         public ActionResult Edit(int? id)
         {
-           
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -402,7 +404,7 @@ namespace AdvertProject.Controllers
                 }
             }
             //If is true, if advert contains forbidden word
-            if(selectedCategories == null)
+            if (selectedCategories == null)
             {
                 advert = db.Adverts.Where(x => x.ID == advert.ID).Include(x => x.categories).FirstOrDefault();
                 foreach (AdvertCategory category in advert.categories.ToList())
