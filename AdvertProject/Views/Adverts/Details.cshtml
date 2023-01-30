@@ -29,7 +29,22 @@
         </dt>
 
         <dd class="ddContent">
-            @Html.DisplayFor(model => model.Content)
+            @Html.Raw(Model.Content)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.categories)
+        </dt>
+        <dd>
+            @if (Model.categories.Count>0) {
+                foreach (var category in Model.categories)
+                {
+                <div>@category.Category.Name </div> 
+                }
+            }
+            else
+            {
+                <div>...</div>
+            }
         </dd>
     </dl>
 </div>

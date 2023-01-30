@@ -53,8 +53,8 @@ namespace AdvertProject.Controllers
             var app = HttpContext.Application;
             string advertId = advert.ID.ToString();
             var current = app[advertId];
-            //TODO: Pobranie kategorii
-
+            
+            
 
             if (current == null)
                 app[advertId] = 1;
